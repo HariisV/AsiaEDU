@@ -16,6 +16,7 @@ import { adminRoutes } from '@/const';
 import { userRoutes } from './route-user';
 import ForgotPassword from '@/pages/auth/forgot-password';
 import ResetPassword from '@/pages/auth/reset-password';
+import LandingPage from '@/pages/landing-page';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -99,6 +100,7 @@ export default function RoutesList() {
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
         <Route path="/auth/reset-password/:jwt" element={<ResetPassword />} />
       </Route>
+      <Route path="/" element={<LandingPage />} />,
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
