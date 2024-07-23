@@ -47,7 +47,7 @@ const find = async (req, res, next) => {
         id: validate.id,
       },
     });
-    if (!result) throw new BadRequestError('Paket Pembelian tidak ditemukan');
+    if (!result) throw new BadRequestError('Kelas tidak ditemukan');
     res.status(200).json({
       data: result,
       msg: 'Get data by id',

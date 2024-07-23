@@ -34,7 +34,7 @@ export default function HomePage() {
             </div>
           ))}
       </Carousel>
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-x-7 gap-y-7 mx-5">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-x-7 gap-y-7 mx-5 mt-4">
         <div className="item-stat bg-white rounded-2xl p-5">
           <div className="flex flex-row mb-7 justify-between">
             <div className="bg-violet-700 rounded-full w-fit p-3">

@@ -1,8 +1,4 @@
-import {
-  IconBuildingStore,
-  IconCalendarEvent,
-  IconHome2,
-} from '@tabler/icons-react';
+import { IconBuildingStore, IconHome2 } from '@tabler/icons-react';
 
 const menuList = [
   {
@@ -16,20 +12,9 @@ const menuList = [
 
       {
         icon: <IconBuildingStore />,
-        title: 'Paket Pembelian',
-        link: '/paket-pembelian',
+        title: 'Kelas',
+        link: '/classes',
         count: 'pembelian',
-      },
-      // {
-      //   icon: <IconBrandTrello />,
-      //   title: 'Kelas saya',
-      //   link: '/my-class',
-      // },
-      {
-        icon: <IconCalendarEvent />,
-        title: 'Event',
-        link: '/event',
-        count: 'event',
       },
     ],
   },

@@ -1,13 +1,8 @@
 import {
-  IconBell,
-  IconCalendarEvent,
-  IconClipboardData,
-  IconCreditCardPay,
   IconDeviceAnalytics,
-  IconDiscount2,
   IconIcons,
   IconNotebook,
-  IconReportMoney,
+  IconUsersGroup,
 } from '@tabler/icons-react';
 
 const menuList = [
@@ -31,47 +26,11 @@ const menuList = [
     pages: [
       {
         icon: <IconNotebook />,
-        title: 'Bank Soal',
-        link: '/manage-soal-category',
+        title: 'Kelas',
+        link: '/manage-kelas',
       },
       {
-        icon: <IconClipboardData />,
-        title: 'Paket Latihan',
-        link: '/manage-latihan',
-      },
-      {
-        icon: <IconCreditCardPay />,
-        title: 'Paket Pembelian',
-        link: '/manage-pembelian',
-      },
-      {
-        icon: <IconDiscount2 />,
-        title: 'Voucher',
-        link: '/manage-voucher',
-      },
-    ],
-  },
-
-  {
-    title: 'Lainnya',
-    pages: [
-      {
-        icon: <IconBell />,
-        title: 'Notifikasi',
-        link: '/manage-notifikasi',
-      },
-      {
-        icon: <IconReportMoney />,
-        title: 'Penjualan',
-        link: '/manage-penjualan',
-      },
-      {
-        icon: <IconCalendarEvent />,
-        title: 'Event',
-        link: '/manage-event',
-      },
-      {
-        icon: <IconDeviceAnalytics />,
+        icon: <IconUsersGroup />,
         title: 'User',
         link: '/manage-user',
       },

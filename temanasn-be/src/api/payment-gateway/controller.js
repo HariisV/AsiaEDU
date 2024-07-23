@@ -100,8 +100,7 @@ const createPayment = async (req, res, next) => {
       },
     });
 
-    if (!checkingPaket)
-      throw new BadRequestError('Paket pembelian tidak ditemukan');
+    if (!checkingPaket) throw new BadRequestError('Kelas tidak ditemukan');
 
     let harga = checkingPaket.harga;
     const discount = {};

@@ -2,13 +2,10 @@ export { default as routes } from './routes';
 export { default as menuListUser } from './menu-list-user';
 export { default as menuListAdmin } from './menu-list-admin';
 
-export const SERVER_URL_API = 'https://bimbel.viracun.id/server/api';
-export const SERVER_URL = 'https://bimbel.viracun.id/server/';
-export const FRONTEND_URL = 'https://bimbel.viracun.id';
+export const SERVER_URL = 'http://localhost:8001';
+// export const SERVER_URL = 'https://bimbel.viracun.id/server/';
 
-// export const SERVER_URL_API = 'http://localhost:8001/api';
-// export const SERVER_URL = 'http://localhost:8001';
-// export const FRONTEND_URL = 'http://localhost:5173';
+export const SERVER_URL_API = `${SERVER_URL}/api`;
 
 export { adminRoutes } from './route-admin';
 

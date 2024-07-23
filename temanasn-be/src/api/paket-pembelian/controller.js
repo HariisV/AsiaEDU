@@ -132,7 +132,7 @@ const insert = async (req, res, next) => {
 
     res.status(200).json({
       data: result,
-      msg: 'Berhasil menambahkan paket pembelian',
+      msg: 'Berhasil menambahkan Kelas',
     });
   } catch (error) {
     next(error);
@@ -170,7 +170,7 @@ const update = async (req, res, next) => {
       },
     });
 
-    if (!isExist) throw new BadRequestError('Paket Pembelian tidak ditemukan');
+    if (!isExist) throw new BadRequestError('Kelas tidak ditemukan');
 
     if (req?.file?.path) {
       deleteFile(isExist.gambar);
@@ -206,7 +206,7 @@ const update = async (req, res, next) => {
 
     res.status(200).json({
       data: result,
-      msg: 'Berhasil mengubah data paket pembelian',
+      msg: 'Berhasil mengubah data Kelas',
     });
   } catch (error) {
     next(error);
@@ -227,7 +227,7 @@ const remove = async (req, res, next) => {
       },
     });
 
-    if (!isExist) throw new BadRequestError('Paket Pembelian tidak ditemukan');
+    if (!isExist) throw new BadRequestError('Kelas tidak ditemukan');
 
     const result = await database.paketPembelian.delete({
       where: {
@@ -237,7 +237,7 @@ const remove = async (req, res, next) => {
 
     res.status(200).json({
       data: result,
-      msg: 'Berhasil menghapus Paket Pembelian',
+      msg: 'Berhasil menghapus Kelas',
     });
   } catch (error) {
     next(error);
