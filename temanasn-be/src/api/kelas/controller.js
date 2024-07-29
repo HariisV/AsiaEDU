@@ -4,6 +4,65 @@ const database = require('#database');
 const { returnPagination, deleteFile, filterToJson } = require('#utils');
 const { BadRequestError } = require('#errors');
 
+const getMyClass = async (req, res, next) => {
+  try {
+    const schema = Joi.object({
+      skip: Joi.number(),
+      take: Joi.number(),
+      sortBy: Joi.string(),
+      descending: Joi.boolean(),
+      filters: Joi.object(),
+    });
+
+    const validate = await schema.validateAsync(req.query);
+
+    const result = await database.$transaction([
+      database.kelas.findMany({
+        skip: validate.skip,
+        take: validate.take,
+        orderBy: {
+          [validate.sortBy]: validate.descending ? 'desc' : 'asc',
+        },
+        where: {
+          ...filterToJson(validate),
+          KelasUser: {
+            some: {
+              userId: req.user.id,
+            },
+          },
+        },
+        select: {
+          id: true,
+          name: true,
+          gambar: true,
+          _count: {
+            select: {
+              KelasUser: {
+                where: {
+                  userId: req.user.id,
+                },
+              },
+            },
+          },
+        },
+      }),
+      database.kelas.count({
+        where: {
+          ...filterToJson(validate),
+          KelasUser: {
+            some: {
+              userId: req.user.id,
+            },
+          },
+        },
+      }),
+    ]);
+
+    return returnPagination(req, res, result);
+  } catch (error) {
+    next(error);
+  }
+};
 const get = async (req, res, next) => {
   try {
     const schema = Joi.object({
@@ -17,7 +76,7 @@ const get = async (req, res, next) => {
     const validate = await schema.validateAsync(req.query);
 
     const result = await database.$transaction([
-      database.notification.findMany({
+      database.kelas.findMany({
         skip: validate.skip,
         take: validate.take,
         orderBy: {
@@ -28,24 +87,20 @@ const get = async (req, res, next) => {
         },
         select: {
           id: true,
-          keterangan: true,
-          title: true,
-          url: true,
-          icon: true,
-          createdAt: true,
-          updatedAt: true,
+          name: true,
+          gambar: true,
           _count: {
             select: {
-              NotificationUser: {
+              KelasUser: {
                 where: {
-                  isRead: true,
+                  userId: req.user.id,
                 },
               },
             },
           },
         },
       }),
-      database.notification.count({
+      database.kelas.count({
         where: {
           ...filterToJson(validate),
         },
@@ -66,13 +121,13 @@ const find = async (req, res, next) => {
 
     const validate = await schema.validateAsync(req.params);
 
-    const result = await database.notification.findUnique({
+    const result = await database.kelas.findUnique({
       where: {
         id: validate.id,
       },
     });
 
-    if (!result) throw new BadRequestError('Notifikasi tidak ditemukan');
+    if (!result) throw new BadRequestError('kelas tidak ditemukan');
 
     res.status(200).json({
       data: result,
@@ -86,37 +141,22 @@ const find = async (req, res, next) => {
 const insert = async (req, res, next) => {
   try {
     const schema = Joi.object({
-      keterangan: Joi.allow(null, ''),
-      title: Joi.string().required(),
-      url: Joi.string(),
-      icon: Joi.string(),
+      gambar: Joi.string().required(),
+      name: Joi.string().required(),
     });
 
     const validate = await schema.validateAsync({
       ...req.body,
+      gambar: req?.file?.path,
     });
 
-    const result = await database.notification.create({
-      data: { ...validate },
-    });
-
-    const getAllUser = await database.user.findMany({
-      select: {
-        id: true,
-      },
-    });
-
-    await database.notificationUser.createMany({
-      data: getAllUser.map((item) => ({
-        userId: item.id,
-        notificationId: result.id,
-        type: 'USER',
-      })),
+    const result = await database.kelas.create({
+      data: validate,
     });
 
     res.status(200).json({
       data: result,
-      msg: 'Berhasil menambahkan notifikasi',
+      msg: 'Berhasil menambahkan kelas',
     });
   } catch (error) {
     next(error);
@@ -126,32 +166,31 @@ const insert = async (req, res, next) => {
 const update = async (req, res, next) => {
   try {
     const schema = Joi.object({
+      gambar: Joi.string(),
+      name: Joi.string().required(),
       id: Joi.number().required(),
-      keterangan: Joi.allow(null, ''),
-      title: Joi.string().required(),
-      url: Joi.string(),
-      icon: Joi.string(),
     });
 
     const validate = await schema.validateAsync(
       {
         ...req.params,
         ...req.body,
+        gambar: req?.file?.path,
       },
       {
         stripUnknown: true,
       }
     );
 
-    const isExist = await database.notification.findUnique({
+    const isExist = await database.kelas.findUnique({
       where: {
         id: validate.id,
       },
     });
 
-    if (!isExist) throw new BadRequestError('Notifikasi tidak ditemukan');
+    if (!isExist) throw new BadRequestError('kelas tidak ditemukan');
 
-    const result = await database.notification.update({
+    const result = await database.kelas.update({
       where: {
         id: validate.id,
       },
@@ -162,7 +201,7 @@ const update = async (req, res, next) => {
 
     res.status(200).json({
       data: result,
-      msg: 'Berhasil mengubah notifikasi',
+      msg: 'Berhasil mengubah data kelas',
     });
   } catch (error) {
     next(error);
@@ -177,15 +216,15 @@ const remove = async (req, res, next) => {
 
     const validate = await schema.validateAsync(req.params);
 
-    const isExist = await database.notification.findUnique({
+    const isExist = await database.kelas.findUnique({
       where: {
         id: validate.id,
       },
     });
 
-    if (!isExist) throw new BadRequestError('Notifikasi tidak ditemukan');
+    if (!isExist) throw new BadRequestError('kelas tidak ditemukan');
 
-    const result = await database.notification.delete({
+    const result = await database.kelas.delete({
       where: {
         id: validate.id,
       },
@@ -193,14 +232,14 @@ const remove = async (req, res, next) => {
 
     res.status(200).json({
       data: result,
-      msg: 'Berhasil menghapus Notifikasi',
+      msg: 'Berhasil menghapus data kelas',
     });
   } catch (error) {
     next(error);
   }
 };
 
-const read = async (req, res, next) => {
+const join = async (req, res, next) => {
   try {
     const schema = Joi.object({
       id: Joi.number().required(),
@@ -208,65 +247,45 @@ const read = async (req, res, next) => {
 
     const validate = await schema.validateAsync(req.body);
 
-    const isExist = await database.notificationUser.findUnique({
+    const isExist = await database.kelas.findUnique({
       where: {
         id: validate.id,
       },
     });
 
-    if (!isExist) throw new BadRequestError('Notifikasi tidak ditemukan');
+    if (!isExist) throw new BadRequestError('kelas tidak ditemukan');
 
-    const result = await database.notificationUser.update({
+    let result = await database.kelasUser.findFirst({
       where: {
-        id: validate.id,
-      },
-      data: {
-        isRead: true,
+        kelasId: validate.id,
+        userId: req.user.id,
       },
     });
+
+    if (!result) {
+      result = await database.kelasUser.create({
+        data: {
+          kelasId: validate.id,
+          userId: req.user.id,
+        },
+      });
+    }
 
     res.status(200).json({
       data: result,
-      msg: 'Berhasil menghapus Notifikasi',
+      msg: 'Berhasil join kelas',
     });
   } catch (error) {
     next(error);
   }
 };
 
-const readAll = async (req, res, next) => {
-  try {
-    const isExist = await database.user.findUnique({
-      where: {
-        id: req?.user?.id,
-      },
-    });
-
-    if (!isExist) throw new BadRequestError('User tidak ditemukan');
-
-    const result = await database.notificationUser.updateMany({
-      where: {
-        userId: req?.user?.id,
-      },
-      data: {
-        isRead: true,
-      },
-    });
-
-    res.status(200).json({
-      data: result,
-      msg: 'Berhasil menghapus Notifikasi',
-    });
-  } catch (error) {
-    next(error);
-  }
-};
 module.exports = {
   get,
   find,
   insert,
   update,
+  join,
   remove,
-  read,
-  readAll,
+  getMyClass,
 };

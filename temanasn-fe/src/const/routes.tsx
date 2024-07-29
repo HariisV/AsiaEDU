@@ -60,7 +60,7 @@ const UnAuthenticationLayouts: React.FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      navigate(role === 'USER' ? '/' : '/Dashboard', { replace: true });
+      navigate(role !== 'USER' ? '/' : '/Dashboard', { replace: true });
     }
   }, [location.pathname]);
 

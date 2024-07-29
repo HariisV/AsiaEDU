@@ -10,11 +10,10 @@ export default function AllClass() {
   const [itemDetail, setItemDetail] = useState({});
 
   const getClass = useGetList({
-    url: 'user/tryout/my-tryout',
+    url: 'user/kelas/get',
     initialParams: {
       skip: 0,
-      take: 0,
-      category: '',
+      take: 9999,
     },
   });
 
@@ -23,13 +22,11 @@ export default function AllClass() {
       {paymentModal && (
         <PaymentModal setVisible={setPaymentModal} itemDetail={itemDetail} />
       )}
-      <BreadCrumb
-        page={[{ name: 'Paket Pembelian', link: '/paket-pembelian' }]}
-      />
+      <BreadCrumb page={[{ name: 'Kelas', link: '/semua-kelas' }]} />
       <div className="flex flex-col gap-y-5 md:flex-row md:items-center justify-start md:justify-between header-section w-full">
         <div className="title flex justify-between w-full">
           <h1 className="text-2xl text-indigo-900 font-bold mb-5">
-            Paket Pembelian
+            Semua Kelas
           </h1>
         </div>
       </div>

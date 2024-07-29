@@ -6,7 +6,6 @@ import FetchAPI from '@/utils/fetch-api';
 import { imageLink } from '@/utils/image-link';
 import { jsonToFormData } from '@/utils/json-to-form-data';
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Avatar, Button, Tabs } from 'tdesign-react';
 
 export default function Empty() {
@@ -16,7 +15,6 @@ export default function Empty() {
   const { login } = useAuthStore();
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate();
   const onSubmit = async (data: any) => {
     FetchAPI(
       postData(
@@ -28,7 +26,7 @@ export default function Empty() {
       )
     ).then(({ data }: any) => {
       login(data);
-      navigate('/');
+      window.location.reload();
     });
   };
 
@@ -39,7 +37,7 @@ export default function Empty() {
         oldPassword: data.oldPassword,
       })
     ).then(() => {
-      navigate('/');
+      window.location.reload();
     });
   };
 
@@ -94,6 +92,17 @@ export default function Empty() {
                       </button>
                     </div>
                   </div>
+                  <div className="sm:col-span-6">
+                    <Input
+                      name="email"
+                      title="Email"
+                      type="email"
+                      disabled
+                      validation={{
+                        required: 'Email harus diisi',
+                      }}
+                    />
+                  </div>
                   <div className="sm:col-span-3">
                     <Input
                       name="name"
@@ -118,62 +127,6 @@ export default function Empty() {
                           value: /^8[0-9]{9,11}$/,
                           message: 'Format nomor telphone tidak sesuai',
                         },
-                      }}
-                    />
-                  </div>
-
-                  <div className="sm:col-span-4">
-                    <Input
-                      name="email"
-                      title="Email"
-                      type="email"
-                      disabled
-                      validation={{
-                        required: 'Email harus diisi',
-                      }}
-                    />
-                  </div>
-
-                  <div className="col-span-full">
-                    <Input
-                      name="alamat"
-                      title="Alamat Lengkap"
-                      type="text"
-                      validation={{
-                        required: 'Alamat harus diisi',
-                      }}
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2 sm:col-start-1">
-                    <Input
-                      name="provinsi"
-                      title="Provinsi"
-                      type="text"
-                      validation={{
-                        required: 'Provinsi harus diisi',
-                      }}
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <Input
-                      name="kabupaten"
-                      title="Kabupaten"
-                      type="text"
-                      validation={{
-                        required: 'Kota / Kabupaten harus diisi',
-                      }}
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <Input
-                      name="kecamatan"
-                      title="Kecamatan"
-                      type="text"
-                      validation={{
-                        required: 'Kecamatan harus diisi',
                       }}
                     />
                   </div>

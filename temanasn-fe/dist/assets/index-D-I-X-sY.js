@@ -88627,7 +88627,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           },
         },
         {
-          title: 'Created At',
+          title: 'Dibuat Pada',
           colKey: 'created_at',
           sorter: !0,
           cell: ({ row: l }) =>
@@ -89057,7 +89057,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             }),
         },
         {
-          title: 'Created At',
+          title: 'Dibuat Pada',
           colKey: 'createdAt',
           sorter: !0,
           cell: ({ row: l }) =>
@@ -92476,7 +92476,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           },
         },
         {
-          title: 'Created At',
+          title: 'Dibuat Pada',
           colKey: 'createdAt',
           sorter: !0,
           cell: ({ row: s }) =>
@@ -92732,7 +92732,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         },
         { title: 'Title', colKey: 'nama', cell: ({ row: s }) => s.title },
         {
-          title: 'Created At',
+          title: 'Dibuat Pada',
           colKey: 'createdAt',
           sorter: !0,
           cell: ({ row: s }) =>
@@ -93211,7 +93211,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             p.jsx(Ms, { content: s.keterangan, readOnly: !0 }),
         },
         {
-          title: 'Created At',
+          title: 'Dibuat Pada',
           colKey: 'createdAt',
           width: 150,
           align: 'center',

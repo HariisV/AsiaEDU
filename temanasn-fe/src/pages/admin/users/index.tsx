@@ -1,7 +1,7 @@
 import TableWrapper from '@/components/table';
 import useGetList from '@/hooks/use-get-list';
 import {
-  IconFileSpreadsheet,
+  // IconFileSpreadsheet,
   IconPencil,
   IconPlus,
   IconTrash,
@@ -13,7 +13,7 @@ import { Button, Popconfirm } from 'tdesign-react';
 // import { deleteData } from '@/utils/axios';
 import BreadCrumb from '@/components/breadcrumb';
 import ManageUser from './manage';
-import { deleteData, getExcel } from '@/utils/axios';
+import { deleteData } from '@/utils/axios';
 import FetchAPI from '@/utils/fetch-api';
 
 enum FilterType {
@@ -41,9 +41,9 @@ export default function UserIndex() {
       dataUser.refresh();
     });
   };
-  const handleExportExcel = async () => {
-    await getExcel('admin/users/excel', 'users');
-  };
+  // const handleExportExcel = async () => {
+  //   await getExcel('admin/users/excel', 'users');
+  // };
 
   const columns = [
     {
@@ -87,19 +87,9 @@ export default function UserIndex() {
         showConfirmAndReset: true,
       },
     },
+
     {
-      title: 'Domisili Kota',
-      colKey: 'kabupaten',
-      filter: {
-        type: FilterType.Input, // Using the enum here
-        resetValue: '',
-        confirmEvents: ['onEnter'],
-        props: { placeholder: 'Input noWA' },
-        showConfirmAndReset: true,
-      },
-    },
-    {
-      title: 'Created At',
+      title: 'Dibuat Pada',
       colKey: 'created_at',
       sorter: true,
       cell: ({ row }: any) => {
@@ -160,7 +150,7 @@ export default function UserIndex() {
               Manage User
             </h1>
             <div className="flex gap-3">
-              <Button
+              {/* <Button
                 theme="primary"
                 size="large"
                 variant="dashed"
@@ -168,7 +158,7 @@ export default function UserIndex() {
                 className="hover:shadow-xl"
               >
                 <IconFileSpreadsheet size={20} className="" />
-              </Button>
+              </Button> */}
               <Button
                 theme="default"
                 size="large"

@@ -71,42 +71,37 @@ export default function ManageUser({
             }}
           />
         </div>
-        <div className="flex gap-5">
-          <Input
-            type="password"
-            name="password"
-            title="Password"
-            validation={
-              detail?.id
-                ? {}
-                : {
-                    required: 'Password harus di isi',
-                    minLength: {
-                      value: 8,
-                      message: 'Password minimal 8 karakter',
-                    },
-                  }
-            }
-          />
-          <Input
-            title="Nomor Telepon"
-            startAdornment="+62"
-            placeholder="81234567890"
-            name="noWA"
-            type="text"
-            validation={{
-              required: 'Nomor telepon harus di isi',
-              pattern: {
-                value: /^8[0-9]{9,11}$/,
-                message: 'Format nomor telphone tidak sesuai',
-              },
-            }}
-          />
-        </div>
-        <Input title="Alamat" name="alamat" type="multiple" />
-        <Input name="provinsi" title="Provinsi" type="text" />
-        <Input name="kabupaten" title="Kabupaten" type="text" />{' '}
-        <Input name="kecamatan" title="Kecamatan" type="text" />
+        <Input
+          type="password"
+          name="password"
+          title="Password"
+          validation={
+            detail?.id
+              ? {}
+              : {
+                  required: 'Password harus di isi',
+                  minLength: {
+                    value: 8,
+                    message: 'Password minimal 8 karakter',
+                  },
+                }
+          }
+        />
+        <Input
+          title="Nomor Telepon"
+          startAdornment="+62"
+          placeholder="81234567890"
+          name="noWA"
+          type="text"
+          validation={{
+            required: 'Nomor telepon harus di isi',
+            pattern: {
+              value: /^8[0-9]{9,11}$/,
+              message: 'Format nomor telphone tidak sesuai',
+            },
+          }}
+        />
+
         <div className="flex justify-end gap-2">
           <Button
             variant="outline"
