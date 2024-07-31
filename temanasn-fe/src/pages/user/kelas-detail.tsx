@@ -1,16 +1,40 @@
+import { Layout, Menu } from 'tdesign-react';
+import {
+    SearchIcon,
+    NotificationFilledIcon,
+    HomeIcon,
+} from 'tdesign-icons-react';
+
+const { Header, Content, Footer } = Layout;
+const { HeadMenu, MenuItem } = Menu;
+
 export default function KelasDetail() {
-  return (
-    <div className=" rounded-md bg-white p-5">
-      <div className="flex flex-col gap-y-5 md:flex-row md:items-center justify-start md:justify-between header-section w-full">
-        <div className="title flex justify-between w-full">
-          <h1 className="text-2xl text-indigo-900 font-bold mb-5">Kelas</h1>
-        </div>
-      </div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, cumque!
-        Reiciendis modi similique ad, aliquid commodi aliquam quidem, corrupti
-        quos molestias placeat ab? Neque quasi hic aut vitae animi ipsa?
-      </p>
-    </div>
-  );
+    return (
+        <Layout>
+            <Header>
+                <HeadMenu
+                    value="item1"
+                    logo={<img width="136" src="https://www.tencent.com/img/index/menu_logo_hover.png" alt="logo" />}
+                    operations={
+                        <div className="t-menu__operations">
+                            <SearchIcon className="t-menu__operations-icon" />
+                            <NotificationFilledIcon className="t-menu__operations-icon" />
+                            <HomeIcon className="t-menu__operations-icon" />
+                        </div>
+                    }
+                >
+                    <MenuItem value="item1">已选内容</MenuItem>
+                    <MenuItem value="item2">菜单内容一</MenuItem>
+                    <MenuItem value="item3">菜单内容二</MenuItem>
+                    <MenuItem value="item4" disabled>
+                        菜单内容三
+                    </MenuItem>
+                </HeadMenu>
+            </Header>
+            <Content>
+                <div>Content</div>
+            </Content>
+            <Footer>Copyright @ 2019-2020 Tencent. All Rights Reserved</Footer>
+        </Layout>
+    );
 }

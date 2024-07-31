@@ -7,6 +7,8 @@ export default function Empty() {
           <p className="text-sm text-gray-500">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
             fugit voluptates iste impedit, repellen
+
+            this is empty
           </p>
         </div>
         <div className="flex flex-row gap-x-3">
