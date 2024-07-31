@@ -71,7 +71,7 @@ export default function SideMenu({ classNames }: any) {
             <AnimatePresence>
               {myClass?.map((item: any) => (
                 <motion.div
-                  key={item.paketPembelianId}
+                  key={item.id}
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
@@ -79,22 +79,17 @@ export default function SideMenu({ classNames }: any) {
                   className=""
                 >
                   <button
-                    className={`flex items-center justify-between w-full px-3 py-3 group hover:text-white text-base font-medium text-gray-600 transition-colors duration-300 transform rounded-lg hover:bg-indigo-900 hover:shadow-xl ${
-                      checkRouteActive(
-                        `my-class/${item.paketPembelianId}`,
-                        location.pathname,
-                        item.paketPembelianId
-                      ) && ' bg-indigo-900 text-white'
+                    className={`flex items-center justify-between w-full px-3 py-3 group  text-base font-medium text-gray-600 transition-colors duration-300 transform rounded-lg hover:text-indigo-900  ${
+                      checkRouteActive(`kelas/${item.id}`, location.pathname) &&
+                      ' text-indigo-900 '
                     }`}
                     onClick={() => {
-                      navigate(`/kelas/${item.paketPembelianId}`);
+                      navigate(`/kelas/${item.id}`);
                     }}
                   >
                     <div className="flex items-center gap-x-2">
                       <IconBook2 />
-                      <span className="text-left">
-                        {item.paketPembelian?.nama}
-                      </span>
+                      <span className="text-left">{item.name}</span>
                     </div>
                   </button>
                 </motion.div>

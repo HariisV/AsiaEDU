@@ -41,8 +41,8 @@ export default function HomePage() {
               <IconBuildingBank className="text-white" />
             </div>
           </div>
-          <h3 className="text-2xl text-indigo-950 font-bold">{data?.soal}</h3>
-          <p className="text-sm text-gray-500">Bank Soal</p>
+          <h3 className="text-2xl text-indigo-950 font-bold">{data?.kelas}</h3>
+          <p className="text-sm text-gray-500">Kelas</p>
         </div>
         <div className="item-stat bg-white rounded-2xl p-5">
           <div className="flex flex-row mb-7 justify-between">
@@ -94,9 +94,7 @@ export default function HomePage() {
               </svg>
             </div>
           </div>
-          <h3 className="text-2xl text-indigo-950 font-bold">
-            {data?.pembelian}
-          </h3>
+          <h3 className="text-2xl text-indigo-950 font-bold">{0}</h3>
           <p className="text-sm text-gray-500">Paket Tersedia</p>
         </div>
         <div className="item-stat bg-white rounded-2xl p-5">
@@ -152,7 +150,7 @@ export default function HomePage() {
               </svg>
             </div>
           </div>
-          <h3 className="text-2xl text-indigo-950 font-bold">{data?.event}</h3>
+          <h3 className="text-2xl text-indigo-950 font-bold">{0}</h3>
           <p className="text-sm text-gray-500">Event</p>
         </div>
       </div>

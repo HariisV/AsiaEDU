@@ -3,6 +3,7 @@ export { default as menuListUser } from './menu-list-user';
 export { default as menuListAdmin } from './menu-list-admin';
 
 export const SERVER_URL = 'http://3.38.191.169:8001';
+// export const SERVER_URL = 'http://localhost:8001';
 
 export const SERVER_URL_API = `${SERVER_URL}/api`;
 

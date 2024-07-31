@@ -82,7 +82,7 @@ export default function ManageHomePage() {
     },
 
     {
-      title: 'Created At',
+      title: 'Dibuat Pada',
       colKey: 'createdAt',
       sorter: true,
       cell: ({ row }: any) => {

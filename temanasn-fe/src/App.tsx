@@ -22,7 +22,6 @@ import 'moment/min/moment-with-locales';
 import { imageLink } from './utils/image-link';
 import useGetList from './hooks/use-get-list';
 import SideMenu from './components/side-menu';
-import AlertTryout from './components/alert-tryout';
 import { useHomeStore } from '@/stores/home-stores';
 import { getData, postData } from './utils/axios';
 
@@ -103,11 +102,10 @@ export default function App({ children }: LayoutProps) {
   };
 
   const getMyClass = useGetList({
-    url: 'user/get-my-class',
+    url: 'user/kelas/my-class',
     initialParams: {
       skip: 0,
-      take: 0,
-      disabled: account?.role === 'ADMIN',
+      take: 9999,
     },
     handleSuccess: (res) => {
       setMyClass(res.list);
@@ -356,7 +354,7 @@ export default function App({ children }: LayoutProps) {
                 className="user flex-row items-center gap-x-3 hidden md:flex relative"
                 ref={dropdownProfile}
               >
-                {account?.role === 'USER' && (
+                {/* {account?.role === 'USER' && (
                   <div className="relative font-[sans-serif] w-max mx-auto group group-hover:opacity-100 ">
                     <button
                       type="button"
@@ -489,7 +487,7 @@ export default function App({ children }: LayoutProps) {
                       </div>
                     </div>
                   </div>
-                )}
+                )} */}
 
                 <img
                   src={imageLink(account?.gambar || '')}
@@ -524,7 +522,6 @@ export default function App({ children }: LayoutProps) {
               </div>
             </div>
           </div>
-          {account?.role === 'USER' && <AlertTryout />}
 
           <div
             className={`min-h-[90vh]  bg-[#f6f8fd] border-t border-t-[#DDD] mb-10 ${

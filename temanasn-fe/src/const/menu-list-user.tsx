@@ -7,14 +7,13 @@ const menuList = [
       {
         icon: <IconHome2 />,
         title: 'Home',
-        link: '/',
+        link: '/home',
       },
 
       {
         icon: <IconBuildingStore />,
         title: 'Kelas',
-        link: '/classes',
-        count: 'pembelian',
+        link: '/semua-kelas',
       },
     ],
   },

@@ -43,7 +43,7 @@ export default function ManageEvent({
 
   return (
     <Dialog
-      header={detail.id ? 'Edit Event' : 'Tambah Event'}
+      header={detail.id ? 'Edit Section' : 'Tambah Section'}
       visible
       onClose={handleClose}
       className="w-[800px]"
