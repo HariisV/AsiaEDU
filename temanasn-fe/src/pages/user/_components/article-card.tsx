@@ -5,7 +5,7 @@ import {
     Col,
     Comment,
     Divider,
-    Dropdown, Image, ImageViewer, ImageViewerProps, MessagePlugin,
+    Image, ImageViewer, ImageViewerProps,
     NotificationPlugin,
     Row,
     Space,
