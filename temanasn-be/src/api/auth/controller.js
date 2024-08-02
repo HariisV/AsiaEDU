@@ -43,13 +43,13 @@ const register = async (req, res, next) => {
 
     const token = generateToken(user);
 
-    sendMail({
-      to: user.email,
-      subject: 'Please Confirm Your Email',
-      template: 'register.html',
-      name: validate.name,
-      url: `${process.env.URL_SERVER}/auth/confirm-email/${token}`,
-    });
+    // sendMail({
+    //   to: user.email,
+    //   subject: 'Please Confirm Your Email',
+    //   template: 'register.html',
+    //   name: validate.name,
+    //   url: `${process.env.URL_SERVER}/auth/confirm-email/${token}`,
+    // });
 
     res.status(StatusCodes.CREATED).json({
       data: user,

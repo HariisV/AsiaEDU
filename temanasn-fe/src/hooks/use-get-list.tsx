@@ -21,6 +21,7 @@ export default function useGetList({
   useMore = false,
   handleSuccess = (res: any) => res,
 }: GetListProps) {
+
   const [params, setParams] = useState<any>({
     skip: 0,
     take: 10,

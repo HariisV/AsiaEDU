@@ -25,7 +25,7 @@ const getMyClass = async (req, res, next) => {
         },
         where: {
           ...filterToJson(validate),
-          KelasUser: {
+          kelasUser: {
             some: {
               userId: req.user.id,
             },
@@ -37,7 +37,7 @@ const getMyClass = async (req, res, next) => {
           gambar: true,
           _count: {
             select: {
-              KelasUser: {
+              kelasUser: {
                 where: {
                   userId: req.user.id,
                 },
@@ -49,7 +49,7 @@ const getMyClass = async (req, res, next) => {
       database.kelas.count({
         where: {
           ...filterToJson(validate),
-          KelasUser: {
+          kelasUser: {
             some: {
               userId: req.user.id,
             },
@@ -91,7 +91,7 @@ const get = async (req, res, next) => {
           gambar: true,
           _count: {
             select: {
-              KelasUser: {
+              kelasUser: {
                 where: {
                   userId: req.user.id,
                 },

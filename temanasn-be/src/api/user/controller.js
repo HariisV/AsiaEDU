@@ -37,11 +37,11 @@ const changeProfile = async (req, res, next) => {
       data: {
         name: validate.name,
         noWA: validate.noWA,
-        alamat: validate.alamat,
-        provinsi: validate.provinsi,
-        kabupaten: validate.kabupaten,
-        kecamatan: validate.kecamatan,
-        gambar: validate.gambar || isExist.gambar,
+        // alamat: validate.alamat,
+        // provinsi: validate.provinsi,
+        // kabupaten: validate.kabupaten,
+        // kecamatan: validate.kecamatan,
+        // gambar: validate.gambar || isExist.gambar,
       },
     });
 
