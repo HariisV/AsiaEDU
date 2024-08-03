@@ -8,19 +8,21 @@ datasource db {
 }
 
 model User {
-  id               Int                @id @default(autoincrement())
-  email            String             @unique
-  name             String?
-  noWA             String?
-  password         String
-  gambar           String?            @default("public/DEFAULT_USER.png")
-  role             EnumRole           @default(USER)
-  verifyAt         DateTime?
-  jwtVersion       Int                @default(0)
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  NotificationUser NotificationUser[]
-  KelasUser        KelasUser[]
+  id                  Int                   @id @default(autoincrement())
+  email               String                @unique
+  name                String?
+  noWA                String?
+  password            String
+  gambar              String?               @default("public/DEFAULT_USER.png")
+  role                EnumRole              @default(USER)
+  verifyAt            DateTime?
+  jwtVersion          Int                   @default(0)
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  NotificationUser    NotificationUser[]
+  KelasUser           KelasUser[]
+  KelasArticle        KelasArticle[]
+  KelasArticleComment KelasArticleComment[]
 }
 
 model HomeSection {
@@ -55,12 +57,13 @@ model NotificationUser {
 }
 
 model Kelas {
-  id        Int         @id @default(autoincrement())
+  id        Int            @id @default(autoincrement())
   name      String
   gambar    String?
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  KelasUser KelasUser[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  kelasUser KelasUser[]
+  articles  KelasArticle[]
 }
 
 model KelasUser {
@@ -74,6 +77,64 @@ model KelasUser {
 
   @@index([kelasId], map: "KelasUser_kelasId_fkey")
   @@index([userId], map: "KelasUser_userId_fkey")
+}
+
+model KelasArticle {
+  id          Int                   @id @default(autoincrement())
+  userId      Int
+  kelasId     Int
+  title       String                @db.Text
+  description String                @db.Text
+  isApprove   Boolean               @default(false)
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+  Kelas       Kelas                 @relation(fields: [kelasId], references: [id])
+  User        User                  @relation(fields: [userId], references: [id])
+  media       KelasArticleMedia[]
+  comment     KelasArticleComment[]
+  like        KelasArticleLike[]
+
+  @@index([kelasId], map: "KelasArticle_kelasId_fkey")
+  @@index([userId], map: "KelasArticle_userId_fkey")
+}
+
+model KelasArticleMedia {
+  id        Int           @id @default(autoincrement())
+  articleId Int
+  type      MediaType     @default(IMAGE)
+  urlFile   String
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  article   KelasArticle? @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([articleId], map: "KelasArticleMedia_articleId_fkey")
+}
+
+model KelasArticleComment {
+  id        Int           @id @default(autoincrement())
+  userId    Int
+  articleId Int
+  comment   String        @db.Text
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  article   KelasArticle? @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  User      User          @relation(fields: [userId], references: [id])
+
+  @@index([articleId], map: "KelasArticleComment_articleId_fkey")
+  @@index([userId], map: "KelasArticleComment_userId_fkey")
+}
+
+model KelasArticleLike {
+  id        Int           @id @default(autoincrement())
+  userId    Int
+  articleId Int
+  isLike    Boolean       @default(false)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  article   KelasArticle? @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@index([articleId], map: "KelasArticleLike_articleId_fkey")
+  @@index([userId], map: "KelasArticleLike_userId_fkey")
 }
 
 enum EnumRole {
@@ -97,4 +158,10 @@ enum NotificationStatus {
   PAYMENT_SUCCESS
   PAYMENT_FAILED
   BIMBEL_CHANGES
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  DOCUMENT
 }
