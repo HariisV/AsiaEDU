@@ -5,8 +5,9 @@ interface HomeProps {
   setData: (data: []) => void;
   section?: [];
   users?: number;
-  notifikasi?: [];
   kelas?: number;
+  artikel?: number;
+  komentar?: number;
 }
 
 export const useHomeStore = create<HomeProps>()(
@@ -15,9 +16,9 @@ export const useHomeStore = create<HomeProps>()(
       setData: (props: any) => {
         set({
           users: props.users,
+          komentar: props.komentar,
           kelas: props.kelas,
           section: props.section,
-          notifikasi: props.notifikasi,
         });
       },
     }),

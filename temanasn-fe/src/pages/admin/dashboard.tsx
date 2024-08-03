@@ -7,11 +7,10 @@ import { Tag } from 'tdesign-react';
 
 export default function DashboardAdmin() {
   const [data, setData] = useState({
-    soal: 0,
-    pembelian: 0,
-    event: 0,
-    voucher: 0,
+    kelas: 0,
     user: 0,
+    artikel: 0,
+    komentar: 0,
     users: [],
     pembelians: [],
   });
@@ -48,8 +47,10 @@ export default function DashboardAdmin() {
                 <IconBuildingBank className="text-white" />
               </div>
             </div>
-            <h3 className="text-2xl text-indigo-950 font-bold">{data?.soal}</h3>
-            <p className="text-sm text-gray-500">Bank Soal</p>
+            <h3 className="text-2xl text-indigo-950 font-bold">
+              {data?.kelas}
+            </h3>
+            <p className="text-sm text-gray-500">Kelas</p>
           </div>
           <div className="item-stat bg-white rounded-2xl p-5">
             <div className="flex flex-row mb-7 justify-between">
@@ -102,9 +103,9 @@ export default function DashboardAdmin() {
               </div>
             </div>
             <h3 className="text-2xl text-indigo-950 font-bold">
-              {data?.pembelian}
+              {data?.artikel}
             </h3>
-            <p className="text-sm text-gray-500">Pembelian</p>
+            <p className="text-sm text-gray-500">Artikel</p>
           </div>
           <div className="item-stat bg-white rounded-2xl p-5">
             <div className="flex flex-row mb-7 justify-between">
@@ -159,13 +160,15 @@ export default function DashboardAdmin() {
                 </svg>
               </div>
             </div>
-            <h3 className="text-2xl text-indigo-950 font-bold">{data.event}</h3>
-            <p className="text-sm text-gray-500">Event</p>
+            <h3 className="text-2xl text-indigo-950 font-bold">
+              {data.komentar}
+            </h3>
+            <p className="text-sm text-gray-500">Komentar</p>
           </div>
         </div>
       </section>
 
-      <section className="sales pt-10  grid grid-cols-1 md:grid-cols-2 gap-x-7 gap-y-7">
+      <section className="sales pt-10  ">
         <div className="flex flex-col gap-y-3">
           <h3 className="text-xl font-semibold text-indigo-950">
             Pengguna Terbaru
@@ -205,58 +208,6 @@ export default function DashboardAdmin() {
                           {item?.verifyAt
                             ? 'Terverifikasi'
                             : 'Belum Verifikasi'}
-                        </Tag>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div className="flex flex-col gap-y-3">
-          <h3 className="text-xl font-semibold text-indigo-950">
-            Pembelian Terbaru
-          </h3>
-          <div className="flex flex-col bg-white rounded-2xl p-5">
-            <table>
-              <tbody className="flex flex-col gap-y-6">
-                {data?.pembelians?.map((item: any, index) => (
-                  <tr
-                    className="flex flex-row items-center 2xl:justify-start justify-between"
-                    key={index}
-                  >
-                    <td className="flex justify-between w-full ">
-                      <div className="flex xl:basis-5/12 flex-row gap-x-3 items-center">
-                        <img
-                          className="h-[50px] w-[50px] rounded-2xl object-cover"
-                          alt=""
-                          src={imageLink(item?.paketPembelian?.gambar)}
-                        />
-                        <div>
-                          <a href="#">
-                            <h3 className="text-indigo-950 font-semibold text-base">
-                              {item?.namaPaket}
-                            </h3>
-                          </a>
-                          <p className="text-sm text-gray-500">
-                            {moment(item?.createdAt).fromNow()}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="self-center">
-                        <Tag
-                          theme={
-                            item?.status === 'PAID'
-                              ? 'success'
-                              : item?.status === 'UNPAID'
-                              ? 'warning'
-                              : 'danger'
-                          }
-                          size="large"
-                          variant="light"
-                        >
-                          {item?.status}
                         </Tag>
                       </div>
                     </td>

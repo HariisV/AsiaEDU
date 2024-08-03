@@ -2,11 +2,10 @@ const database = require('#database');
 
 const admin = async (req, res, next) => {
   try {
-    const user = await database.user.count();
-    // const pembelian = await database.pembelian.count();
-    // const soal = await database.bankSoal.count();
-    // const voucher = await database.voucher.count();
-    // const event = await database.event.count();
+    const users = await database.user.count();
+    const kelas = await database.kelas.count();
+    const artikel = await database.KelasArticle.count();
+    const komentar = await database.KelasArticleComment.count();
 
     const get5User = await database.user.findMany({
       skip: 0,
@@ -21,11 +20,10 @@ const admin = async (req, res, next) => {
     return res.status(200).json({
       status: 'success',
       data: {
-        user,
-        pembelian: 5,
-        soal: 5,
-        voucher: 5,
-        event: 5,
+        user: users,
+        kelas,
+        komentar,
+        artikel,
         users: get5User,
         pembelians: get5Pembelian,
       },
@@ -39,25 +37,19 @@ const user = async (req, res, next) => {
   try {
     const users = await database.user.count();
     const kelas = await database.kelas.count();
-    // const pembelian = await database.paketPembelian.count();
-    // const soal = await database.bankSoal.count();
-    // const event = await database.event.count();
+    const artikel = await database.KelasArticle.count();
+    const komentar = await database.KelasArticleComment.count();
 
     const section = await database.homeSection.findMany({});
-
-    // SYSTEM
-    // USER
 
     return res.status(200).json({
       status: 'success',
       data: {
         users,
         kelas,
-        // pembelian,
-        // soal,
-        // event,
+        komentar,
+        artikel,
         section,
-        // notifikasi,
       },
     });
   } catch (error) {

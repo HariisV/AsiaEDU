@@ -134,7 +134,7 @@ const insert = async (req, res, next) => {
 
     sendMail({
       to: validate.email,
-      subject: 'Welcome to Viracun',
+      subject: 'Welcome to AsiaEDU',
       template: 'register.html', // -todo: change the template welcome.html
       name: validate.name,
     });

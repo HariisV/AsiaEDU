@@ -224,8 +224,8 @@ export default function ChelseaComponent() {
                 </div>
                 <h3 className="mb-4 text-sm font-semibold leading-snug">
                   <span>
-                    “TeachEase membuat saya termotivasi untuk belajar! Terima
-                    kasih TeachEase.”
+                    “AsiaEDU membuat saya termotivasi untuk belajar! Terima
+                    kasih AsiaEDU.”
                   </span>
                 </h3>
                 <h3></h3>
@@ -389,9 +389,8 @@ export default function ChelseaComponent() {
                 </div>
                 <h3 className="mb-4 text-sm font-semibold leading-snug">
                   <span>
-                    “TeachEase bener-bener ngebantu aku banget dalam
-                    pembelajaran. Udah gitu bisa diakses dimana aja dan kapan
-                    aja!”
+                    “AsiaEDU bener-bener ngebantu aku banget dalam pembelajaran.
+                    Udah gitu bisa diakses dimana aja dan kapan aja!”
                   </span>
                 </h3>
                 <h3></h3>
@@ -416,7 +415,7 @@ export default function ChelseaComponent() {
             </p>
 
             <a
-              href="#"
+              href="/auth/register"
               className="mt-8 inline-block rounded-full border border-indigo-600 px-12 py-3 text-sm font-medium text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
             >
               Daftar Sekarang
@@ -431,7 +430,7 @@ export default function ChelseaComponent() {
                   className="text-gray-500 transition hover:opacity-75"
                 >
                   {' '}
-                  © 2024 TeachEase. All Right Reserved{' '}
+                  © 2024 AsiaEDU. All Right Reserved{' '}
                 </a>
               </li>
             </ul>

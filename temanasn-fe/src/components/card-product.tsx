@@ -18,13 +18,13 @@ export default function CardProduct({ setVisible, item, setItemDetail }: any) {
         <button
           className="block w-full select-none rounded-lg bg-primary py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           type="button"
-          disabled={item?._count?.KelasUser}
+          disabled={item?._count?.kelasUser}
           onClick={() => {
             setVisible(true);
             setItemDetail(item);
           }}
         >
-          {item?._count?.KelasUser ? 'Telah Bergabung' : 'Gabung!'}
+          {item?._count?.kelasUser ? 'Telah Bergabung' : 'Gabung!'}
         </button>
       </div>
     </div>
