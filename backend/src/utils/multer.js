@@ -14,6 +14,8 @@ const upload = (path) => {
       file.mimetype === 'image/jpeg' ||
       file.mimetype === 'image/png' ||
       file.mimetype === 'image/jpg' ||
+      file.mimetype === 'application/pdf' ||
+      file.mimetype === 'video/mp4' ||
       file.mimetype ===
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     ) {

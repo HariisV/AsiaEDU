@@ -140,6 +140,8 @@ const find = async (req, res, next) => {
 
 const insert = async (req, res, next) => {
   try {
+    console.log(req)
+
     const schema = Joi.object({
       gambar: Joi.string().required(),
       name: Joi.string().required(),
