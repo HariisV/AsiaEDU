@@ -30,8 +30,8 @@ const AdminRoutesLayouts: React.FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     if (!token || role !== 'ADMIN') {
-      localStorage.clear();
-      navigate('/auth/login', { replace: true });
+      // localStorage.clear();
+      // navigate('/auth/login', { replace: true });
     }
   }, [location.pathname]);
 
@@ -45,8 +45,8 @@ const UserRoutesLayouts: React.FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     if (!token || role !== 'USER') {
-      localStorage.clear();
-      navigate('/auth/login', { replace: true });
+      // localStorage.clear();
+      // navigate('/auth/login', { replace: true });
     }
   }, [location.pathname]);
 
@@ -60,7 +60,7 @@ const UnAuthenticationLayouts: React.FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      navigate(role !== 'USER' ? '/' : '/Dashboard', { replace: true });
+      // navigate(role !== 'USER' ? '/' : '/Dashboard', { replace: true });
     }
   }, [location.pathname]);
 

@@ -1,4 +1,5 @@
 import {
+  IconArticle,
   IconDeviceAnalytics,
   IconIcons,
   IconNotebook,
@@ -22,13 +23,23 @@ const menuList = [
     ],
   },
   {
-    title: 'Master',
+    title: 'Kelas',
     pages: [
       {
         icon: <IconNotebook />,
         title: 'Kelas',
         link: '/manage-kelas',
       },
+      {
+        icon: <IconArticle />,
+        title: 'Artikel',
+        link: '/manage-article',
+      },
+    ],
+  },
+  {
+    title: 'User',
+    pages: [
       {
         icon: <IconUsersGroup />,
         title: 'User',
