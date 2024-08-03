@@ -19,7 +19,6 @@ model User {
   jwtVersion          Int                   @default(0)
   createdAt           DateTime              @default(now())
   updatedAt           DateTime              @updatedAt
-  NotificationUser    NotificationUser[]
   KelasUser           KelasUser[]
   KelasArticle        KelasArticle[]
   KelasArticleComment KelasArticleComment[]
@@ -36,24 +35,6 @@ model HomeSection {
   createdAt  DateTime            @default(now())
   updatedAt  DateTime            @updatedAt
   tipe       enumHomeSectionTipe
-}
-
-model NotificationUser {
-  id             Int                 @id @default(autoincrement())
-  userId         Int
-  notificationId Int?
-  isRead         Boolean             @default(false)
-  createdAt      DateTime            @default(now())
-  updatedAt      DateTime            @updatedAt
-  title          String?
-  status         NotificationStatus?
-  type           NoticationType      @default(SYSTEM)
-  keterangan     String?             @db.Text
-  url            String?
-  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([notificationId], map: "NotificationUser_notificationId_fkey")
-  @@index([userId], map: "NotificationUser_userId_fkey")
 }
 
 model Kelas {
@@ -146,18 +127,6 @@ enum enumHomeSectionTipe {
   BANNER
   REVIEW
   CUSTOM
-}
-
-enum NoticationType {
-  SYSTEM
-  USER
-}
-
-enum NotificationStatus {
-  PAYMENT_PENDING
-  PAYMENT_SUCCESS
-  PAYMENT_FAILED
-  BIMBEL_CHANGES
 }
 
 enum MediaType {
