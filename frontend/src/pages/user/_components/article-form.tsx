@@ -1,10 +1,10 @@
-import {Button, Dialog, Textarea, Row, Col} from 'tdesign-react';
+import { Button, Dialog, Textarea, Row, Col } from 'tdesign-react';
 import Form from '@/components/form.tsx';
 import Input from '@/components/input.tsx';
-import {useState, ChangeEvent} from 'react';
+import { useState, ChangeEvent } from 'react';
 import FormItem from 'tdesign-react/es/form/FormItem';
-import {AddIcon} from 'tdesign-icons-react';
-import {postData} from '@/utils/axios.ts';
+import { AddIcon } from 'tdesign-icons-react';
+import { postData } from '@/utils/axios.ts';
 import FetchAPI from '@/utils/fetch-api.ts';
 
 interface MediaItem {
@@ -18,25 +18,19 @@ interface ArticleFormProps {
   params?: any;
 }
 
-const mediaTypes = [
-  {label: 'Image', value: 'IMAGE'},
-  {label: 'Video', value: 'VIDEO'},
-  {label: 'Document', value: 'DOCUMENT'},
-];
-
 export default function ArticleForm({
-                                      setVisible,
-                                      kelasId,
-                                      params,
-                                    }: ArticleFormProps) {
+  setVisible,
+  kelasId,
+  params,
+}: ArticleFormProps) {
   const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState<string>('');
   const [media, setMedia] = useState<MediaItem[]>([
-    {urlFile: '', type: 'image'},
+    { urlFile: '', type: 'image' },
   ]);
 
   const handleAddMedia = () => {
-    setMedia([...media, {urlFile: '', type: 'image'}]);
+    setMedia([...media, { urlFile: '', type: 'image' }]);
   };
 
   const handleMediaChange = (
@@ -53,10 +47,6 @@ export default function ArticleForm({
     handleMediaChange(index, 'urlFile', e.target.value);
   };
 
-  const handleTypeChange = (index: number, type: string) => {
-    handleMediaChange(index, 'type', type);
-  };
-
   const handleSubmit = async (data: any) => {
     setLoading(true);
 
@@ -68,14 +58,14 @@ export default function ArticleForm({
       if (item.urlFile && item.urlFile[0]) {
         formData.append(`media[${index}][urlFile]`, item.urlFile[0]);
       } else {
-        console.warn(`Media item at index ${index} does not have a valid urlFile.`);
+        console.warn(
+          `Media item at index ${index} does not have a valid urlFile.`
+        );
       }
       formData.append(`media[${index}][type]`, item.type);
     });
 
-    FetchAPI(
-      postData('user/kelas/article/insert', formData)
-    )
+    FetchAPI(postData('user/kelas/article/insert', formData))
       .then(() => {
         params.refresh();
         setVisible(false);
@@ -108,17 +98,19 @@ export default function ArticleForm({
             required: 'Judul artikel harus diisi',
           }}
         />
-        <FormItem
-          label="Description"
-          labelAlign={'top'}
-        >
-          <Textarea name="description" value={description} onChange={(e) => setDescription(e)}/>
+        <FormItem label="Description" labelAlign={'top'}>
+          <Textarea
+            name="description"
+            className="description"
+            value={description}
+            onChange={(e) => setDescription(e)}
+          />
         </FormItem>
         <div className="flex flex-col justify-end gap-2">
           <div>
-            {media.map((item: MediaItem, index) => (
-              <Row key={index} gutter={4}>
-                <Col span={6}>
+            {media.map((_, index) => (
+              <Row key={index} gutter={4} className="mt-4">
+                <Col span={12}>
                   <Input
                     title="Media URL"
                     name={`media[${index}][urlFile]`}
@@ -128,22 +120,10 @@ export default function ArticleForm({
                     }
                   />
                 </Col>
-                <Col span={6}>
-                  <Input
-                    title="Media Type"
-                    name={`media[${index}][type]`}
-                    type="select"
-                    options={mediaTypes}
-                    className="py-0.5"
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      handleTypeChange(index, e.target.value)
-                    }
-                  />
-                </Col>
               </Row>
             ))}
           </div>
-          <Button onClick={handleAddMedia} icon={<AddIcon/>}>
+          <Button onClick={handleAddMedia} icon={<AddIcon />} className="mt-3">
             Media
           </Button>
         </div>

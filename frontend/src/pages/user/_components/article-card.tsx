@@ -3,7 +3,8 @@ import {
   Button,
   Card,
   Col,
-  Comment, Dialog,
+  Comment,
+  Dialog,
   Divider,
   Image,
   ImageViewer,
@@ -12,16 +13,14 @@ import {
   Space,
   Textarea,
 } from 'tdesign-react';
-import {ChatIcon, Icon, ThumbUpIcon} from 'tdesign-icons-react';
+import { ChatIcon, Icon, ThumbUpIcon } from 'tdesign-icons-react';
 import CommentList from '@/pages/user/_components/comment-list.tsx';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import FetchAPI from '@/utils/fetch-api.ts';
-import {postData} from '@/utils/axios.ts';
+import { postData } from '@/utils/axios.ts';
 import moment from 'moment';
-import {imageLink} from '@/utils/image-link';
-import DocumentModal from "@/components/pdf-viewer.tsx";
-import PDFViewer from "@/components/pdf-viewer.tsx";
-import ReactPlayer from "react-player";
+import { imageLink } from '@/utils/image-link';
+import ReactPlayer from 'react-player';
 
 type Article = {
   id: number;
@@ -43,7 +42,7 @@ type ArticleCardProps = {
   refetch: any;
 };
 
-export default function ArticleCard({data, refetch}: ArticleCardProps) {
+export default function ArticleCard({ data, refetch }: ArticleCardProps) {
   const [comment, setComment] = useState('');
   const [payload, setPayload] = useState<Article>(data);
   const [like, setLike] = useState<boolean>(false);
@@ -63,13 +62,13 @@ export default function ArticleCard({data, refetch}: ArticleCardProps) {
   }
 
   const replyForm = (
-    <Space direction="vertical" align="end" style={{width: '100%'}}>
+    <Space direction="vertical" align="end" style={{ width: '100%' }}>
       <Textarea
         placeholder="Tulis komentar disini..."
         value={comment}
         onChange={setComment}
       />
-      <Button style={{float: 'right'}} onClick={submitComment}>
+      <Button style={{ float: 'right' }} onClick={submitComment}>
         Send
       </Button>
     </Space>
@@ -89,10 +88,6 @@ export default function ArticleCard({data, refetch}: ArticleCardProps) {
       refetch.refresh();
     });
   }
-
-  const handleClose = () => {
-    setVisible(false);
-  };
 
   useEffect(() => {
     setPayload(data);
@@ -128,12 +123,12 @@ export default function ArticleCard({data, refetch}: ArticleCardProps) {
         }
         className="rounded-xl"
       >
-        <Row style={{marginBottom: '1rem', marginTop: '.5rem'}}>
+        <Row style={{ marginBottom: '1rem', marginTop: '.5rem' }}>
           <Col span={12} className="mb-3">
             {payload.media
               ?.filter((e: any) => e.type === 'IMAGE')
               .map((item: any, index: number) => {
-                const trigger: ImageViewerProps['trigger'] = ({open}) => {
+                const trigger: ImageViewerProps['trigger'] = ({ open }) => {
                   const mask = (
                     <div
                       style={{
@@ -147,7 +142,7 @@ export default function ArticleCard({data, refetch}: ArticleCardProps) {
                       onClick={open}
                     >
                       <span>
-                        <Icon size="16px" name={'browse'}/> Lihat
+                        <Icon size="16px" name={'browse'} /> Lihat
                       </span>
                     </div>
                   );
@@ -194,10 +189,10 @@ export default function ArticleCard({data, refetch}: ArticleCardProps) {
                       variant="outline"
                       size="large"
                       onClick={() => {
-                        setVisible(true)
-                        setVideoUrl(imageLink(item.urlFile))
+                        setVisible(true);
+                        setVideoUrl(imageLink(item.urlFile));
                       }}
-                      icon={<Icon name="logo-youtube"/>}
+                      icon={<Icon name="logo-youtube" />}
                       className="flex items-center justify-start"
                     >
                       Video Pembelajaran
@@ -207,45 +202,49 @@ export default function ArticleCard({data, refetch}: ArticleCardProps) {
                       variant="outline"
                       size="large"
                       onClick={() => handleClickMedia(imageLink(item.urlFile))}
-                      icon={<Icon name="file-attachment"/>}
+                      icon={<Icon name="file-attachment" />}
                       className="flex items-center justify-start"
                     >
                       Modul Pembelajaran
                     </Button>
-                    // <PDFViewer fileUrl={item.urlFile}/>
-                  ) : null}
+                  ) : // <PDFViewer fileUrl={item.urlFile}/>
+                  null}
                 </div>
               ))}
           </Col>
         </Row>
-        <Divider className="my-4"/>
+        <Divider className="my-4" />
         <Row align="middle" justify="start" className="mb-4" gutter={6}>
           <Col span={6}>
             <Button
               shape="round"
               variant={like ? 'base' : 'text'}
-              icon={<ThumbUpIcon/>}
+              icon={<ThumbUpIcon />}
               onClick={handleLike}
             >
               {payload._count.like} Suka
             </Button>
-            <Button shape="round" variant="text" icon={<ChatIcon/>}>
+            <Button shape="round" variant="text" icon={<ChatIcon />}>
               {payload.comment.length} Komentar
             </Button>
           </Col>
         </Row>
         <div className="-mt-2 py-2 lg:mt-0 lg:flex-shrink-0 w-full overflow-y-auto max-h-36">
-          <CommentList data={payload.comment}/>
+          <CommentList data={payload.comment} />
         </div>
-        <Dialog visible={visible}
-                onClose={() => setVisible(false)}
-                header="Video Player"
-                footer={null}
-                width="60%">
-          <ReactPlayer url={videoUrl}
-                       controls={true}
-                       width="100%"
-                       height="100%"/>
+        <Dialog
+          visible={visible}
+          onClose={() => setVisible(false)}
+          header="Video Player"
+          footer={null}
+          width="60%"
+        >
+          <ReactPlayer
+            url={videoUrl}
+            controls={true}
+            width="100%"
+            height="100%"
+          />
         </Dialog>
       </Card>
     </>
