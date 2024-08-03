@@ -222,7 +222,7 @@ export default function ChelseaComponent() {
                     </svg>
                   </div>
                 </div>
-                <h3 className="mb-4 text-2xl font-semibold leading-snug">
+                <h3 className="mb-4 text-sm font-semibold leading-snug">
                   <span>
                     “TeachEase membuat saya termotivasi untuk belajar! Terima
                     kasih TeachEase.”
@@ -306,7 +306,7 @@ export default function ChelseaComponent() {
                     </svg>
                   </div>
                 </div>
-                <h3 className="mb-4 text-2xl font-semibold leading-snug">
+                <h3 className="mb-4 text-sm font-semibold leading-snug">
                   <span>“E-learning terbaik!”</span>
                 </h3>
                 <h3></h3>
@@ -387,7 +387,7 @@ export default function ChelseaComponent() {
                     </svg>
                   </div>
                 </div>
-                <h3 className="mb-4 text-2xl font-semibold leading-snug">
+                <h3 className="mb-4 text-sm font-semibold leading-snug">
                   <span>
                     “TeachEase bener-bener ngebantu aku banget dalam
                     pembelajaran. Udah gitu bisa diakses dimana aja dan kapan
