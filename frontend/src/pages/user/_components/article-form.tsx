@@ -1,8 +1,7 @@
-import { Button, Dialog, Textarea, Row, Col } from 'tdesign-react';
+import { Button, Dialog, Row, Col } from 'tdesign-react';
 import Form from '@/components/form.tsx';
 import Input from '@/components/input.tsx';
 import { useState, ChangeEvent } from 'react';
-import FormItem from 'tdesign-react/es/form/FormItem';
 import { AddIcon } from 'tdesign-icons-react';
 import { postData } from '@/utils/axios.ts';
 import FetchAPI from '@/utils/fetch-api.ts';
@@ -24,7 +23,6 @@ export default function ArticleForm({
   params,
 }: ArticleFormProps) {
   const [loading, setLoading] = useState(false);
-  const [description, setDescription] = useState<string>('');
   const [media, setMedia] = useState<MediaItem[]>([
     { urlFile: '', type: 'image' },
   ]);
@@ -52,7 +50,7 @@ export default function ArticleForm({
 
     const formData = new FormData();
     formData.append('title', data.title);
-    formData.append('description', description);
+    formData.append('description', data.description);
     formData.append('kelasId', kelasId);
     data.media.forEach((item: any, index: number) => {
       if (item.urlFile && item.urlFile[0]) {
@@ -98,14 +96,7 @@ export default function ArticleForm({
             required: 'Judul artikel harus diisi',
           }}
         />
-        <FormItem label="Description" labelAlign={'top'}>
-          <Textarea
-            name="description"
-            className="description"
-            value={description}
-            onChange={(e) => setDescription(e)}
-          />
-        </FormItem>
+        <Input title="Deskripsi" name={`description`} type="ckeditor" />
         <div className="flex flex-col justify-end gap-2">
           <div>
             {media.map((_, index) => (

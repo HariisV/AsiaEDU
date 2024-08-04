@@ -21,6 +21,7 @@ import { postData } from '@/utils/axios.ts';
 import moment from 'moment';
 import { imageLink } from '@/utils/image-link';
 import ReactPlayer from 'react-player';
+import CKeditor from '@/components/ckeditor';
 
 type Article = {
   id: number;
@@ -177,7 +178,7 @@ export default function ArticleCard({ data, refetch }: ArticleCardProps) {
               })}
           </Col>
           <Col span={12} className="mb-3">
-            {payload.description}
+            <CKeditor content={payload.description} readOnly />
           </Col>
           <Col span={12} className="mb-2 flex gap-3">
             {payload.media
