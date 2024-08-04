@@ -18,6 +18,7 @@ export const useHomeStore = create<HomeProps>()(
           users: props.users,
           komentar: props.komentar,
           kelas: props.kelas,
+          artikel: props.artikel,
           section: props.section,
         });
       },
