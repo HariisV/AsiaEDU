@@ -177,7 +177,7 @@ export default function HomePage() {
       </div>
       <div className="mx-5 bg-white mt-5 px-10 rounded-xl pb-20">
         <h3 className="pt-10 text-xl text-center font-medium">
-          Apa kata para Alumni
+          Apa kata para Pengguna Kami
         </h3>
 
         <div className="grid   rounded-xl md:mx-5 mt-10 md:grid-cols-2 gap-2 bg-white">
