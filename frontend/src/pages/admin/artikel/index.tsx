@@ -1,11 +1,9 @@
 import TableWrapper from '@/components/table';
 import useGetList from '@/hooks/use-get-list';
-import { IconBan, IconCheck, IconPlus } from '@tabler/icons-react';
+import { IconBan, IconCheck } from '@tabler/icons-react';
 import moment from 'moment';
-import { useState } from 'react';
 import { Avatar, Button, Popconfirm } from 'tdesign-react';
 import BreadCrumb from '@/components/breadcrumb';
-import ManageKelas from './manage';
 import { patchData } from '@/utils/axios';
 import FetchAPI from '@/utils/fetch-api';
 import { imageLink } from '@/utils/image-link';
@@ -20,9 +18,6 @@ enum AlignType {
 }
 
 export default function ArtikelIndex() {
-  const [visible, setVisible] = useState(false);
-  const [detail, setDetail] = useState({});
-
   const dataKelas = useGetList({
     url: 'admin/kelas/article/get',
     initialParams: {
@@ -128,14 +123,6 @@ export default function ArtikelIndex() {
   ];
   return (
     <section className="">
-      {visible && (
-        <ManageKelas
-          setDetail={setDetail}
-          params={dataKelas}
-          setVisible={setVisible}
-          detail={detail}
-        />
-      )}
       <BreadCrumb page={[{ name: 'Manage Kelas', link: '/manage-kelas' }]} />
       <div className="bg-white p-8 rounded-2xl min-w-[400px]">
         <div className="flex flex-col gap-y-5 md:flex-row md:items-center justify-start md:justify-between header-section w-full">
@@ -143,19 +130,6 @@ export default function ArtikelIndex() {
             <h1 className="text-2xl text-indigo-950 font-bold mb-5 ">
               Manage Artikel
             </h1>
-            <div className="flex gap-3">
-              <Button
-                theme="default"
-                size="large"
-                className="border-success hover:bg-success hover:text-white group hover:shadow-xl"
-                onClick={() => setVisible(true)}
-              >
-                <IconPlus
-                  size={20}
-                  className="text-success group-hover:text-white"
-                />
-              </Button>
-            </div>
           </div>
         </div>
         <TableWrapper data={dataKelas} columns={columns} />
